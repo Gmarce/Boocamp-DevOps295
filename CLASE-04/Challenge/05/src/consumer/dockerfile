@@ -1,0 +1,17 @@
+# Utiliza la imagen base de Python
+FROM python:3.8
+
+# Establece el directorio de trabajo
+WORKDIR /app
+
+# Copia los archivos del consumidor
+COPY consumer.py /app/
+COPY consumer.sh /app/
+
+# Establece los permisos de ejecución para el script del consumidor
+RUN chmod +x consumer.sh
+
+# Comando para ejecutar el script del consumidor
+CMD ["./consumer.sh"]
+
+
