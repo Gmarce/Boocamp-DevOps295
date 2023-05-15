@@ -63,10 +63,37 @@ docker run -d -p 3000:3000 frontend_pokemon:1.0.0
 
 *** Abrir en el navegador web la siguiente URL: http://localhost:3000. Verificar si la API esta funcionando.
 
-# 7.- Eliminar la imagen en la máquina local:
+# 7.- Subir las imágenes al Docker Hub:
 
-docker rmi gmarce23/coinpy:1.0
+*** Etiquetar las imágenes del backend y frontend
 
+docker tag backend_pokemon:1.0.0 gmarce23/backend_pokemon:1.0.0
+docker tag frontend_pokemon:1.0.0 gmarce23/frontend_pokemon:1.0.0
+
+*** Subir las imágenes etiquetadas al Docker Hub:
+
+docker push gmarce23/backend_pokemon:1.0.0
+docker push gmarce23/frontend_pokemon:1.0.0
+
+# 8.- Crear Docker-compose: docker-compose.yml
+
+version: '3'
+services:
+  backend:
+    image: gmarce23/backend_pokemon:1.0.0
+    ports:
+      - 8000:8000
+
+  frontend:
+    image: gmarce23/frontend_pokemon:1.0.0
+    ports:
+      - 3000:3000
+
+# Ejecutarlo
+
+docker-compose up
+
+# Acceder a la API en http://localhost:8000 y al sitio web frontend en http://localhost:3000
 
 
 
