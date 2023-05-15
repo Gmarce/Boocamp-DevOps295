@@ -1,0 +1,11 @@
+version: '3'
+services:
+  backend:
+    image: gmarce23/backend_pokemon:1.0.0
+    ports:
+      - 8000:8000
+
+  frontend:
+    image: gmarce23/frontend_pokemon:1.0.0
+    ports:
+      - 3000:3000
