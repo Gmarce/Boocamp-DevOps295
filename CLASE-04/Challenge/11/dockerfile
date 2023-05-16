@@ -1,0 +1,18 @@
+# Utilizar una imagen base de PHP y Apache
+FROM php:7.4-apache
+
+# Instalar las extensiones necesarias de PHP
+RUN docker-php-ext-install mysqli
+
+# Copiar los archivos del proyecto al directorio del servidor web
+COPY ./ /var/www/html/
+
+# Configurar permisos en el directorio del servidor web
+RUN chown -R www-data:www-data /var/www/html/
+RUN chmod -R 755 /var/www/html/
+
+# Exponer el puerto 80 para acceder al servidor web
+EXPOSE 80
+
+# Iniciar el servidor web Apache en segundo plano
+CMD ["apache2-foreground"]
